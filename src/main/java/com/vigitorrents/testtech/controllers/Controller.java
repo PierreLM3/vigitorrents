@@ -1,13 +1,13 @@
 package com.vigitorrents.testtech.controllers;
 
 import com.vigitorrents.testtech.entities.Position;
+import com.vigitorrents.testtech.entities.Signalement;
+import com.vigitorrents.testtech.entities.Subscription;
 import com.vigitorrents.testtech.repositories.SignalementsRepository;
 import com.vigitorrents.testtech.repositories.SubscriptionsRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +35,24 @@ class Controller {
     Position getPosition() {
         indexPosition++;
         return positions.get(indexPosition % positions.size());
+    }
+
+    @GetMapping(value = {"/api/informations"})
+    @CrossOrigin
+    @Operation(summary = "Retourne des infos diverses en texte libre", description = "Retourne des infos diverses en texte libre")
+    String getInformations() {
+        return "Blabla";
+    }
+
+    @PostMapping(value = {"/api/signalement"})
+    @CrossOrigin
+    Signalement postSignalement(@RequestBody Signalement signalement) {
+        return signalementsRepository.save(signalement);
+    }
+
+    @PostMapping(value = {"/api/subscription"})
+    @CrossOrigin
+    Subscription postSubscription(@RequestBody Subscription subscription) {
+        return subscriptionsRepository.save(subscription);
     }
 }

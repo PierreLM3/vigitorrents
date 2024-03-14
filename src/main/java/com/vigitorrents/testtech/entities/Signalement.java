@@ -2,9 +2,11 @@ package com.vigitorrents.testtech.entities;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Random;
+
 public class Signalement {
 
-    private final @Id Integer id;
+    private @Id Integer id;
 
     private String nomTorrent;
     private Double latitude;
@@ -15,8 +17,8 @@ public class Signalement {
     private String clarte;
     private String commentaire;
 
-    public Signalement(Integer id, String nomTorrent, Double latitude, Double longitude, String hauteur, String vitesse, String transport, String clarte, String commentaire) {
-        this.id = id;
+    public Signalement(String nomTorrent, Double latitude, Double longitude, String hauteur, String vitesse, String transport, String clarte, String commentaire) {
+        this.id = null;
         this.nomTorrent = nomTorrent;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -25,6 +27,10 @@ public class Signalement {
         this.transport = transport;
         this.clarte = clarte;
         this.commentaire = commentaire;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getNomTorrent() {
@@ -94,7 +100,8 @@ public class Signalement {
     @Override
     public String toString() {
         return "Signalement{" +
-                "nomTorrent='" + nomTorrent + '\'' +
+                "id=" + id +
+                ", nomTorrent='" + nomTorrent + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", hauteur='" + hauteur + '\'' +

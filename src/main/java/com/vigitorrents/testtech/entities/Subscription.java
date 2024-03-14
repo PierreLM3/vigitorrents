@@ -4,12 +4,12 @@ import org.springframework.data.annotation.Id;
 
 public class Subscription {
 
-    private final @Id Integer id;
+    private @Id Integer id;
     private String nomTorrent;
     private String mobile;
 
-    public Subscription(Integer id, String nomTorrent, String mobile) {
-        this.id = id;
+    public Subscription(String nomTorrent, String mobile) {
+        this.id = null;
         this.nomTorrent = nomTorrent;
         this.mobile = mobile;
     }
@@ -17,23 +17,15 @@ public class Subscription {
     public String getNomTorrent() {
         return nomTorrent;
     }
-
-    public void setNomTorrent(String nomTorrent) {
-        this.nomTorrent = nomTorrent;
-    }
-
     public String getMobile() {
         return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
     }
 
     @Override
     public String toString() {
         return "Subscription{" +
-                "nomTorrent='" + nomTorrent + '\'' +
+                "id=" + id +
+                ", nomTorrent='" + nomTorrent + '\'' +
                 ", mobile='" + mobile + '\'' +
                 '}';
     }

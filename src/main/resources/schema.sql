@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS subscription;
 --   Table : signalement
 -- ============================================================
 CREATE TABLE signalement (
-    id INT NOT NULL,
-    nomTorrent VARCHAR(20),
+    id INT NOT NULL AUTO_INCREMENT,
+    nom_torrent VARCHAR(20),
     latitude DOUBLE,
     longitude DOUBLE,
     hauteur VARCHAR(20),
@@ -21,8 +21,8 @@ CREATE TABLE signalement (
 --   Table : subscription
 -- ============================================================
 CREATE TABLE subscription (
-    id INT NOT NULL,
-    nomTorrent VARCHAR(20),
+    id INT NOT NULL AUTO_INCREMENT,
+    nom_torrent VARCHAR(20),
     mobile VARCHAR(20),
     PRIMARY KEY (id)
 );

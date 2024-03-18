@@ -5,9 +5,11 @@ import com.vigitorrents.testtech.entities.Signalement;
 import com.vigitorrents.testtech.entities.Subscription;
 import com.vigitorrents.testtech.repositories.SignalementsRepository;
 import com.vigitorrents.testtech.repositories.SubscriptionsRepository;
+import com.vigitorrents.testtech.services.SmsSender;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+import pl.smsapi.exception.SmsapiException;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
 class Controller {
     private final SignalementsRepository signalementsRepository;
     private final SubscriptionsRepository subscriptionsRepository;
+    private final SmsSender smsSender;
 
     private int indexPosition = 0;
     private List<Position> positions = List.of(
@@ -24,9 +27,12 @@ class Controller {
             new Position(45.2, 5.2)
     );
 
-    public Controller(SignalementsRepository signalementsRepository, SubscriptionsRepository subscriptionsRepository) {
+    public Controller(SignalementsRepository signalementsRepository,
+                      SubscriptionsRepository subscriptionsRepository,
+                      SmsSender smsSender) {
         this.signalementsRepository = signalementsRepository;
         this.subscriptionsRepository = subscriptionsRepository;
+        this.smsSender = smsSender;
     }
 
     @GetMapping(value = {"/api/position", "/_ah/warmup"})
@@ -54,5 +60,11 @@ class Controller {
     @CrossOrigin
     Subscription postSubscription(@RequestBody Subscription subscription) {
         return subscriptionsRepository.save(subscription);
+    }
+
+    @PostMapping(value = {"/api/sendSMS"})
+    @CrossOrigin
+    String sensSMS(@RequestParam String mobileNumber, @RequestParam String message, @RequestParam String accessToken) throws SmsapiException {
+        return smsSender.send(mobileNumber, message, accessToken).getList().get(0).getStatus();
     }
 }

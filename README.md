@@ -3,7 +3,7 @@ Vigi-Torrents
 ## Commandes utiles
 `gcloud sql instances list`
 
-`gcloud sql instances describe testeconocom | grep connectionName`
+`gcloud sql instances describe vigi-torrents | grep connectionName`
 
 `./gradlew appengineDeploy`
 
@@ -16,9 +16,7 @@ http://localhost:8080/swagger-ui/index.html
 
 - Accès sur Google cloud (lenteurs, j'ai mis les ressources basses pour limiter le coût) :
 
-https://unique-spirit-407416.uc.r.appspot.com/
-
-https://unique-spirit-407416.uc.r.appspot.com/swagger-ui/index.html
+https://vigi-torrents.ey.r.appspot.com/swagger-ui/index.html
 
 - Console Google cloud
 

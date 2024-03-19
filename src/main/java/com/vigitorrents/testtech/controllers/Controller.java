@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.smsapi.exception.SmsapiException;
 
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @RestController
 @Tag(name = "Vigi-Torrents")
@@ -56,10 +58,31 @@ class Controller {
         return signalementsRepository.save(signalement);
     }
 
+    @GetMapping(value = {"/api/signalements"})
+    @CrossOrigin
+    Iterable<Signalement> getSignalements() {
+        return signalementsRepository.findAll();
+    }
+
     @PostMapping(value = {"/api/subscription"})
     @CrossOrigin
     Subscription postSubscription(@RequestBody Subscription subscription) {
         return subscriptionsRepository.save(subscription);
+    }
+
+    @GetMapping(value = {"/api/subscriptions"})
+    @CrossOrigin
+    Iterable<Subscription> getSubscriptions() {
+        return subscriptionsRepository.findAll();
+    }
+
+    @DeleteMapping(value = {"/api/subscription"})
+    @CrossOrigin
+    void deleteSubscription(@RequestParam String mobileNumber) {
+        Stream<Subscription> subscriptionsToDelete = StreamSupport.stream(subscriptionsRepository.findAll().spliterator(), false)
+                .filter(it -> it.getMobile().equals(mobileNumber));
+
+        subscriptionsRepository.deleteAll(subscriptionsToDelete.toList());
     }
 
     @PostMapping(value = {"/api/sendSMS"})

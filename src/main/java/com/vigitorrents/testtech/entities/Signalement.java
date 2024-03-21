@@ -2,22 +2,34 @@ package com.vigitorrents.testtech.entities;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Random;
-
 public class Signalement {
 
     private @Id Integer id;
 
-    private String nomTorrent;
-    private Double latitude;
-    private Double longitude;
-    private String hauteur;
-    private String vitesse;
-    private String transport;
-    private String clarte;
-    private String commentaire;
+    private final String nomTorrent;
+    private final Double latitude;
+    private final Double longitude;
+    private final String hauteur;
+    private final String vitesse;
+    private final String transport;
+    private final String clarte;
+    private final String commentaire;
 
-    public Signalement(String nomTorrent, Double latitude, Double longitude, String hauteur, String vitesse, String transport, String clarte, String commentaire) {
+    private final String heure;
+    private final String evenement;
+    private final String media;
+
+    public Signalement(String nomTorrent,
+                       Double latitude,
+                       Double longitude,
+                       String hauteur,
+                       String vitesse,
+                       String transport,
+                       String clarte,
+                       String commentaire,
+                       String heure,
+                       String evenement,
+                       String media) {
         this.id = null;
         this.nomTorrent = nomTorrent;
         this.latitude = latitude;
@@ -27,6 +39,9 @@ public class Signalement {
         this.transport = transport;
         this.clarte = clarte;
         this.commentaire = commentaire;
+        this.heure = heure;
+        this.evenement = evenement;
+        this.media = media;
     }
 
     public Integer getId() {
@@ -37,64 +52,44 @@ public class Signalement {
         return nomTorrent;
     }
 
-    public void setNomTorrent(String nomTorrent) {
-        this.nomTorrent = nomTorrent;
-    }
-
     public Double getLatitude() {
         return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
     }
 
     public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
     public String getHauteur() {
         return hauteur;
-    }
-
-    public void setHauteur(String hauteur) {
-        this.hauteur = hauteur;
     }
 
     public String getVitesse() {
         return vitesse;
     }
 
-    public void setVitesse(String vitesse) {
-        this.vitesse = vitesse;
-    }
-
     public String getTransport() {
         return transport;
-    }
-
-    public void setTransport(String transport) {
-        this.transport = transport;
     }
 
     public String getClarte() {
         return clarte;
     }
 
-    public void setClarte(String clarte) {
-        this.clarte = clarte;
-    }
-
     public String getCommentaire() {
         return commentaire;
     }
 
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
+    public String getHeure() {
+        return heure;
+    }
+
+    public String getEvenement() {
+        return evenement;
+    }
+
+    public String getMedia() {
+        return media;
     }
 
     @Override
@@ -109,6 +104,9 @@ public class Signalement {
                 ", transport='" + transport + '\'' +
                 ", clarte='" + clarte + '\'' +
                 ", commentaire='" + commentaire + '\'' +
+                ", heure='" + heure + '\'' +
+                ", evenement='" + evenement + '\'' +
+                ", media='" + media + '\'' +
                 '}';
     }
 }

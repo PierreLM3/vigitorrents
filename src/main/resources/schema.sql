@@ -6,14 +6,17 @@ DROP TABLE IF EXISTS subscription;
 -- ============================================================
 CREATE TABLE signalement (
     id INT NOT NULL AUTO_INCREMENT,
-    nom_torrent VARCHAR(20),
+    nom_torrent VARCHAR(200),
     latitude DOUBLE,
     longitude DOUBLE,
-    hauteur VARCHAR(20),
-    vitesse VARCHAR(20),
-    transport VARCHAR(20),
-    clarte VARCHAR(20),
-    commentaire VARCHAR(20),
+    hauteur VARCHAR(200),
+    vitesse VARCHAR(200),
+    transport VARCHAR(200),
+    clarte VARCHAR(200),
+    commentaire VARCHAR(2000),
+    heure VARCHAR(200),
+    evenement VARCHAR(200),
+    media VARCHAR(2000),
     PRIMARY KEY (id)
 );
 
@@ -22,7 +25,7 @@ CREATE TABLE signalement (
 -- ============================================================
 CREATE TABLE subscription (
     id INT NOT NULL AUTO_INCREMENT,
-    nom_torrent VARCHAR(20),
-    mobile VARCHAR(20),
+    nom_torrent VARCHAR(200),
+    mobile VARCHAR(200),
     PRIMARY KEY (id)
 );
